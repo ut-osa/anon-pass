@@ -1,0 +1,114 @@
+non-automatic benchmarking at the moment:
+
+hash server on same machine as client:
+
+for i in $(seq 1 10); do server/hash_server & sleep 2 && client/bench_client -n 100000 127.0.0.1 6666 && killall hash_server && sleep 2; done
+
+adunn@darvill:~/anon-sub/hash_server$ for i in $(seq 1 10); do server/hash_server & sleep 2 && client/bench_client -n 100000 127.0.0.1 6666 && killall hash_server && sleep 2; done
+[1] 1121
+num logins: 100000
+4795723 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1128
+num logins: 100000
+4608527 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1135
+num logins: 100000
+4603014 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1142
+num logins: 100000
+1860036 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1149
+num logins: 100000
+4599096 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1156
+num logins: 100000
+4589096 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1163
+num logins: 100000
+4593744 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1170
+num logins: 100000
+4580643 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1177
+num logins: 100000
+4591855 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+[1] 1184
+num logins: 100000
+4575015 us
+malformed packet (id 1)
+[1]+  Terminated              server/hash_server
+
+(The 1.8e6 us case is a symptom of how I keep experiencing some cases
+where the login time is much lower than the typical 4.5 s that we
+see... Don't yet know what that is.)
+
+result:
+4.4e6 +/- 0.8e6 us
+
+or ~ 23,000 logins/s
+
+hash server on different machine than client:
+
+(server on darvill, client on hetfield)
+
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6098634 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6104635 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6030449 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6442933 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6015204 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6024556 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6358036 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6094897 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6054611 us
+adunn@hetfield:~/anon-sub/hash_server/client$ ./bench_client -n 100000 128.83.122.78 6666
+num logins: 100000
+6015079 us
+
+result:
+6.1e6 +/- 0.1e6 us
+
+or ~ 16,000 logins/s
+
+These numbers are the raw throughput for one client.  If there are
+multiple clients (that is, multiple authentication servers) there will
+be some contention.  It will likely be worthwhile to compare in the
+near future what it looks like to have two clients w/50000 versus
+one w/100000 and so on.
+
+We also need to benchmark link.
