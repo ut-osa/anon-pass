@@ -1,0 +1,39 @@
+Anondroid app for Android 2.3 gingerbread. 
+
+NOTE
+=====
+
+Android works best with Ubuntu 10.04 among Linux distros. I don't know about
+SDK, but Android source code did not compile with higher version of Ubuntu.
+
+Installation
+============
+* Install Android SDK and untar the archive
+  http://developer.android.com/sdk/index.html
+
+* Install Android Platform tools and addons by running the following command inside android SDK directory. This takes a while and needs some user interaction (for HTC or Motorola devices):
+  tools/android update sdk --no-ui
+
+* Install Eclipse classic
+  http://www.eclipse.org/downloads/moreinfo/classic.php
+
+* Install Eclipse ADT plugin following the direction:
+  http://developer.android.com/sdk/installing/installing-adt.html
+
+* Set the workspace to app-gingerbread directory or symlink anondroid directory to workspace of Eclipse.
+
+Running
+=======
+To run on virtual device, you can press "Run" button of Eclipse IDE.
+
+To run on physical device, you would want to look at the link below. 
+http://developer.android.com/tools/device.html
+
+For this, you should create a udev config file, enable USB debugging on the
+device, and connect the device through USB. You can check connectivity `adb
+devices` in `platform-tools` directory of SDK.
+
+Once this is set up, you can press the same "Run" button to run the app on the
+device.
+
+

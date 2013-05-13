@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">anondroid</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_anondroid_main">Anonymous Subscription</string>
+    <string name="show_qrcode">Show QR Code</string>
+    <string name="qrcode_panel_desc">QRCode panel</string>
+    
+</resources>
