@@ -1,3 +1,6 @@
+NOTE: The compilation procedure is not yet fully documented.
+=====
+
 Anon-Pass
 =========
 
