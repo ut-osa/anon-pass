@@ -3,11 +3,11 @@ V = @
 CC = gcc
 LD = gcc
 INSTALL = cp
-DESTDIR = .
+DESTDIR = /usr/local
 
 .PHONY: all clean install
 
-CFLAGS := -fPIC -Iinclude
+CFLAGS += -fPIC -Iinclude
 
 LIB := libhs
 SONAME := $(LIB).so

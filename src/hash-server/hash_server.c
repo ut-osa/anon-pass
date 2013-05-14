@@ -17,8 +17,6 @@
 #include "util.h"
 #include "hash.h"
 
-#define LOGGING
-
 #ifdef LOGGING
 #define LOG_EARLY  4
 #define LOG_LATE   5
@@ -602,7 +600,11 @@ int main(int argc, char *argv[])
    }
 
 #ifdef LOGGING
-   log = fopen("/home/mzlee/anon-sub/logs/hs_ops.log", "a");
+   log = fopen("logs/hs_ops.log", "a");
+   if (!log) {
+       fprintf(stderr, "Could not open log location!\n");
+       exit(-1);
+   }
    gettimeofday(&now, NULL);
    fprintf(log, "[%ld] ", now.tv_sec);
    fprintf(log, "login\tlink\tput\tget\n");

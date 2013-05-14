@@ -3,7 +3,7 @@ V = @
 CC = gcc
 LD = gcc
 INSTALL = cp
-DESTDIR = .
+DESTDIR = /usr/local
 
 .PHONY: all clean install debug benchmark
 
@@ -11,7 +11,7 @@ BENCHMARK = 0
 CACHE = 0
 DEBUG = 0
 
-CFLAGS  = -I include -fPIC -O2
+CFLAGS += -I include -fPIC -O2
 CFLAGS += -DDEBUG=$(DEBUG) -DBENCHMARK=$(BENCHMARK) -DCACHE=$(CACHE)
 
 LIB := libanonpass

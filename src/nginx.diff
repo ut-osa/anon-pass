@@ -1,0 +1,11 @@
+--- a/nginx/src/core/ngx_connection.h
++++ b/nginx/src/core/ngx_connection.h
+@@ -148,6 +148,8 @@
+ 
+     ngx_uint_t          requests;
+ 
++    ngx_int_t           auth_timeout;
++
+     unsigned            buffered:8;
+ 
+     unsigned            log_error:3;     /* ngx_connection_log_error_e */

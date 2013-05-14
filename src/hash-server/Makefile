@@ -9,7 +9,7 @@ DESTDIR = .
 
 BENCHMARK = 0
 
-CFLAGS   = -I ../libhs/include $(shell pkg-config --cflags glib-2.0)
+CFLAGS  += -I ../libhs/include $(shell pkg-config --cflags glib-2.0)
 CFLAGS  += -DBENCHMARK=$(BENCHMARK)
 
 LDFLAGS := $(shell pkg-config --libs glib-2.0) -pthread
