@@ -968,6 +968,7 @@ ngx_http_anon_pass_set_sig_privkey(ngx_conf_t *cf, ngx_command_t *cmd, void *con
         EC_POINT_free(pub);
     if (line)
         free(line);
+    EC_KEY_precompute_mult(aplcf->sigkey, NULL);
  out:
     fclose(f);
     return ret;
